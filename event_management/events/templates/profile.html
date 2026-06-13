@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Event Management{% endblock %}
+
+{% block content %}
+<style>
+    
+    /* Profile Page Styling */
+    .pcontainer {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .profile-section h2 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .profile-section p {
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin: 10px 0;
+    }
+
+    .profile-section .btn-danger {
+        margin-top: 20px;
+        display: inline-block;
+        padding: 10px 20px;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+            padding: 8px 12px;
+        }
+    }
+</style>
+
+<div class="pcontainer">
+    <div class="profile-section">
+        <h2>User Profile</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.userprofile.phone }}</p>
+        <p><strong>Address:</strong> {{ user.userprofile.address }}</p>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+{% endblock %}

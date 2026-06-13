@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    :root {
+        --primary: #007BFF;
+        --primary-dark: #0056b3;
+        --success: #28A745;
+        --danger: #DC3545;
+        --light-bg: #F8F9FA;
+        --dark-text: #343A40;
+        --gray-text: #6C757D;
+        --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--light-bg);
+        color: var(--dark-text);
+    }
+
+    .b_container {
+        max-width: 800px;
+        margin: auto;
+        padding: 40px 20px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0 4px 8px var(--shadow);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px var(--shadow);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--dark-text);
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    .btn {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .btn-success:hover {
+        background-color: var(--success);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .alert {
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .text-center img {
+        max-width: 250px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px var(--shadow);
+        transition: 0.3s;
+    }
+
+    .text-center img:hover {
+        transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="b_container mt-5">
+    <h2 class="mb-4">Book Ticket for {{ concert.name }}</h2>
+
+    <!-- Display Concert Details -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ concert.name }}</h5>
+            <p><strong>Date:</strong> {{ concert.date }}</p>
+            <p><strong>Venue:</strong> {{ concert.venue }}</p>
+            <p><strong>Price:</strong> ${{ concert.ticket_price }}</p>
+            <p><strong>Available Tickets:</strong> {{ concert.available_tickets }} / {{ concert.total_tickets }}</p>
+        </div>
+    </div>
+
+    {% if concert.available_tickets > 0 %}
+    <!-- Booking Form -->
+    <form method="POST" enctype="multipart/form-data" class="border p-4 rounded shadow-sm">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_quantity" class="form-label">Number of Tickets</label>
+            <input type="number" name="quantity" id="id_quantity" class="form-control" min="1" max="{{ concert.available_tickets }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Scan the QR Code to Pay</label>
+            <div class="text-center">
+                {% if concert.qr_code %}
+                    <img src="{{ concert.qr_code.url }}" class="img-fluid" alt="Google Pay QR Code">
+                {% else %}
+                    <p>No QR Code available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_transaction_id" class="form-label">Enter Transaction ID</label>
+            <input type="text" name="transaction_id" id="transaction_id" pattern="[A-Za-z0-9]{12,14}" 
+            title="Transaction ID must be between 12 and 14 alphanumeric characters" 
+            required>
+             </div>
+
+        <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+    </form>
+    {% else %}
+        <div class="alert alert-danger mt-3">Tickets are sold out.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

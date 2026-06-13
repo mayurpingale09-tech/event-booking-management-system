@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Bookings - Event Management{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Your Bookings</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Payment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.event.title }}</td>
+                    <td>{{ booking.event_date }}</td>
+                    <td>rs{{ booking.total_price }}</td>
+                    <td>
+                        {% if booking.payment_status %}
+                            <span class="text-success">Paid</span>
+                        {% else %}
+                            <span class="text-danger">Pending</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

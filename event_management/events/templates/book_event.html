@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Event{% endblock %}
+
+{% block content %}
+<style>
+    .book-event-page {
+        --primary: #2E8B57;
+        --primary-dark: #1D6841;
+        --light: #F7F9FB;
+        --dark: #292F36;
+        --gray: #6C757D;
+        --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        margin: 0;
+        padding: 0;
+    }
+
+    .book_container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 40px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px var(--shadow);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--gray);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 25px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        button {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<div class="book_container book-event-page">
+    <h2>Book Event: {{ event.title }}</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Event Date:</label>
+            <input type="date" name="event_date" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Event Time:</label>
+            <input type="time" name="event_time" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Number of Guests:</label>
+            <input type="number" name="guest_count" class="form-control" value="20" required>
+        </div>
+        <div class="form-group">
+            <label>Location:</label>
+            <input type="text" name="location" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="text" name="phone_number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Additional Requests:</label>
+            <textarea name="additional_requests" class="form-control"></textarea>
+        </div>
+        <button type="submit">Confirm Booking</button>
+    </form>
+</div>
+
+{% endblock %}

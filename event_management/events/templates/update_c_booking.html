@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Update Booking</h2>
+    
+    <div class="card p-4 shadow-sm">
+        <h5>User Details</h5>
+        <p><strong>Name:</strong> {{ booking.user.get_full_name }}</p>
+        <p><strong>Email:</strong> {{ booking.user.email }}</p>
+        <p><strong>Phone:</strong> {{ booking.user.profile.phone }}</p>
+
+        <h5>Booking Details</h5>
+        <p><strong>Concert:</strong> {{ booking.concert.name }}</p>
+        <p><strong>Tickets:</strong> {{ booking.quantity }}</p>
+        <p><strong>Transaction ID:</strong> {{ booking.transaction_id }}</p>
+        
+        <form method="POST" class="border p-3 rounded">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary">Update Status</button>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

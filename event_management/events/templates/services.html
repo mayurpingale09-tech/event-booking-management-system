@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Our Event Management Services</h2>
+    
+    <div class="row">
+        <!-- Concert Events -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Concert Event">
+                <div class="card-body">
+                    <h5 class="card-title">Concert & Live Shows</h5>
+                    <p class="card-text">We organize large-scale concerts, music festivals, and live performances with top-tier event planning and management.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corporate Events -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Corporate Event">
+                <div class="card-body">
+                    <h5 class="card-title">Corporate Events</h5>
+                    <p class="card-text">From business conferences to product launches, we ensure professional event planning and seamless execution.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weddings & Private Parties -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Wedding Event">
+                <div class="card-body">
+                    <h5 class="card-title">Weddings & Private Parties</h5>
+                    <p class="card-text">Make your special day memorable with our customized wedding planning and private party services.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Exhibition & Trade Shows -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Trade Show">
+                <div class="card-body">
+                    <h5 class="card-title">Exhibitions & Trade Shows</h5>
+                    <p class="card-text">We provide complete setup, branding, and management for exhibitions and trade fairs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social & Cultural Events -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Cultural Event">
+                <div class="card-body">
+                    <h5 class="card-title">Social & Cultural Events</h5>
+                    <p class="card-text">From charity events to cultural festivals, we handle everything with expertise and creativity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Birthday & Anniversary Celebrations -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/hero-bg.jpg' %}" class="card-img-top" alt="Birthday Party">
+                <div class="card-body">
+                    <h5 class="card-title">Birthdays & Anniversaries</h5>
+                    <p class="card-text">Celebrate birthdays and anniversaries with our fun-filled and theme-based event planning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+</div>
+{% endblock %}

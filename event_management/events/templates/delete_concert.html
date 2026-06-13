@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .d_container{
+        height:90vh;
+    }
+    
+    .delete-form-container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-form-container h2 {
+        text-align: center;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .delete-form-container p {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: var(--dark);
+    }
+
+    .btn-small {
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+</style>
+
+<div class="d_container py-5">
+    <div class="delete-form-container">
+        <h2>Delete Concert</h2>
+        <p>Are you sure you want to delete the concert "<strong>{{ concert.name }}</strong>"?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="btn-container">
+                <button type="submit" class="btn btn-danger btn-small w-100">Yes, Delete</button>
+                <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary btn-small w-100">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

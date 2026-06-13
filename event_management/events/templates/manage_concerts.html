@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Manage Concerts</h2>
+
+    {% if bookings %}
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Concert Name</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Available Tickets</th>
+                    <th>QR Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for concert in bookings %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ concert.name }}</td>
+                    <td>{{ concert.date }}</td>
+                    <td>{{ concert.venue }}</td>
+                    <td>{{ concert.available_tickets }} / {{ concert.total_tickets }}</td>
+                    <td>
+                        {% if concert.qr_code %}
+                            <img src="{{ concert.qr_code.url }}" alt="QR Code" width="50">
+                        {% else %}
+                            No QR Code
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_concert' concert.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'delete_concert' concert.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this concert?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No concerts available.</div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Booking{% endblock %}
+
+{% block content %}
+<style>
+    .update-booking {
+        --primary: #2E8B57;
+        --primary-dark: #1D6841;
+        --secondary: #FFA500;
+        --light: #F7F9FB;
+        --dark: #292F36;
+        --gray: #6C757D;
+        --accent: #FF6B6B;
+        --focus: rgba(46, 139, 87, 0.3);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        margin: 0;
+        padding: 0;
+    }
+
+    .b_container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .b_container:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        background-color: var(--light);
+        transition: border 0.3s, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 8px var(--focus);
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--dark);
+        display: block;
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s ease;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-3px);
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        color: white;
+        border: none;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+            padding: 10px 15px;
+        }
+    }
+</style>
+
+<div class="b_container">
+    <h2>Update Booking</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Status:</label>
+            <select name="status" class="form-control" required>
+                <option value="Pending" {% if booking.status == "Pending" %}selected{% endif %}>Pending</option>
+                <option value="Confirmed" {% if booking.status == "Confirmed" %}selected{% endif %}>Confirmed</option>
+                <option value="Cancelled" {% if booking.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Status</button>
+    </form>
+
+    <h3 class="mt-4">User Contact Information</h3>
+    <p><strong>Name:</strong> {{ booking.user.username }}</p>
+    <p><strong>Phone:</strong> {{ booking.phone_number }}</p>
+    <p><strong>Email:</strong> {{ booking.email }}</p>
+
+    <a href="tel:{{ booking.phone_number }}" class="btn btn-success">Call User</a>
+    <a href="mailto:{{ booking.email }}" class="btn btn-info">Email User</a>
+</div>
+
+{% endblock %}
