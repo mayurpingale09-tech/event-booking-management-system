@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<style>
+    /* Apply styles only to the My Bookings page */
+    .bookings-page {
+        --primary: #2E8B57;         /* Sea Green */
+        --primary-dark: #1D6841;    /* Darker Sea Green */
+        --secondary: #FFA500;       /* Orange */
+        --dark: #292F36;            /* Dark Blue-Gray */
+        --light: #F7F9FB;           /* Off-White */
+        --gray: #6C757D;
+        --accent: #FF6B6B;          /* Coral */
+        height: auto;
+    }
+
+    .bookings-page body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--dark);
+        background-color: var(--light);
+    }
+
+    .bookings-page .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 50px 20px;
+    }
+
+    .bookings-page h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary);
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    /* Table Styling */
+    .bookings-page table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+
+    .bookings-page th, .bookings-page td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 1rem;
+    }
+
+    .bookings-page th {
+        background-color: var(--primary);
+        color: white;
+        font-weight: bold;
+    }
+
+    .bookings-page tr:nth-child(even) {
+        background-color: var(--light);
+    }
+
+    .bookings-page tr:hover {
+        background-color: var(--primary-light);
+        cursor: pointer;
+    }
+
+    .bookings-page td {
+        color: var(--dark);
+    }
+
+    .bookings-page td:last-child {
+        color: var(--secondary);
+    }
+
+    /* Button styling */
+    .bookings-page .btn {
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .bookings-page .btn-primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    .bookings-page .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+
+    /* Prevent navbar expansion */
+    .bookings-page .navbar {
+        margin-bottom: 0; /* Fixes the navbar expansion issue */
+    }
+</style>
+<div class="bookings-page">
+
+<div class="container">
+    <h2>My Bookings</h2>
+    {% if bookings %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Guests</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.event.title }}</td>
+                        <td>{{ booking.event_date }}</td>
+                        <td>{{ booking.event_time }}</td>
+                        <td>{{ booking.guest_count }}</td>
+                        <td>{{ booking.location }}</td>
+                        <td>{{ booking.status }}</td>
+                        <td>${{ booking.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No bookings yet.</p>
+    {% endif %}
+</div>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Concert Bookings</h2>
+
+    {% if c_bookings %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Concert Name</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Tickets Booked</th>
+                    <th>Total Paid</th>
+                    <th>Transaction ID</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in c_bookings %}
+                    <tr>
+                        <td>{{ booking.concert.name }}</td>
+                        <td>{{ booking.concert.date }}</td>
+                        <td>{{ booking.concert.venue }}</td>
+                        <td>{{ booking.quantity }}</td>
+                        <td>${{ booking.total_price }}</td>
+                        <td>{{ booking.transaction_id }}</td>
+                        <td>
+                            <span class="{% if booking.status == 'Confirmed' %}text-success{% else %}text-danger{% endif %}">
+                                {{ booking.status }}
+                            </span>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">You have no concert bookings yet.</div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

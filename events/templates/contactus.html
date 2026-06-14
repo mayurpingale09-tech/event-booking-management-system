@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'images/hero-bg.jpg' %}" class="img-fluid rounded shadow-sm" alt="Contact Us">
+        </div>
+
+        <div class="col-md-6">
+            <form method="POST" class="border p-4 rounded shadow-sm bg-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <h4>Contact Information</h4>
+        <p><strong>Email:</strong> support@eventmanagement.com</p>
+        <p><strong>Phone:</strong> +1 234 567 890</p>
+        <p><strong>Address:</strong> 123 Event Street, City, Country</p>
+    </div>
+</div>
+{% endblock %}

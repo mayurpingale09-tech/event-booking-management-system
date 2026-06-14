@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+    .login-page {
+        --primary: #2E8B57;
+        --primary-dark: #1D6841;
+        --light: #F7F9FB;
+        --dark: #292F36;
+        --gray: #6C757D;
+    }
+
+    .lg_container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        color: white;
+        background: #dc3545;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        text-align: left;
+        margin-bottom: 5px;
+        color: var(--dark);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--gray);
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+
+    p {
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="lg_container login-page">
+    <h2>Login</h2>
+
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label>Username:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <p class="mt-3">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+</div>
+
+{% endblock %}

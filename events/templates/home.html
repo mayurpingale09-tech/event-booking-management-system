@@ -1,0 +1,216 @@
+`````````{% extends 'base.html' %}
+{% load static%}
+{% block title %}Home - Event Management{% endblock %}
+
+{% block content %}
+    <style>
+        
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 10rem;
+        margin-bottom: 3rem;
+    }
+
+    .category {
+        background: white;
+        color:black;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .category:hover {
+        transform: translateY(-5px);
+    }
+   a{
+    text-decoration:none;
+   }
+    </style>
+{% block hero %}
+<!-- Default hero section - can be overridden in child templates -->
+<section class="hero">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4">Create Unforgettable Events</h1>
+        <p class="lead mb-5">Professional planning solutions for every occasion. From corporate gatherings to dream weddings.</p>
+        <a href="{% url 'events' %}" class="btn btn-light btn-lg px-4 me-3">Browse Events</a>
+        <a href="/" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
+    </div>
+    
+    <div class="categories">
+         <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">Social</a>
+         <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">Sports</a>
+         <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">Cultural</a>
+         <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">Educational</a>
+         <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">charity</a>
+        <a href="{% url 'events' %}" class="category animate__animated animate__fadeInUp animate__delay-2s">Corporate</a>
+
+    </div>
+</section>
+{% endblock %}
+
+<!-- About Section -->
+<section id="about-section" class="section about-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="section-title">About EventPro</h2>
+                <p class="lead mb-5">We bring your events to life with creativity, expertise, and flawless execution. Our team of dedicated professionals is committed to making your special occasions truly memorable.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h4>Expert Planning</h4>
+                    <p>Our team consists of certified event planners with years of experience in organizing all types of events from intimate gatherings to large-scale corporate functions.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Creative Solutions</h4>
+                    <p>We bring fresh, innovative ideas to the table, creating unique experiences tailored to your vision, needs, and budget requirements.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h4>Meticulous Execution</h4>
+                    <p>From concept to completion, we handle every detail with precision, ensuring your event runs smoothly and leaves a lasting impression.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Trusted Partners</h4>
+                    <p>We've built strong relationships with top vendors and venues across the region, giving you access to the best services at competitive prices.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Passionate Service</h4>
+                    <p>We're passionate about what we do and are committed to exceeding expectations with personalized service that puts your needs first.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4>Comprehensive Solutions</h4>
+                    <p>From venue selection and catering to entertainment and technical support, we offer end-to-end services for all your event needs.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="/" class="btn btn-primary btn-lg">Learn More About Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials-section" class="section testimonial-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="section-title">Client Reviews</h2>
+                <p class="lead mb-5">Don't just take our word for it. Here's what our clients have to say about their experiences with EventPro.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"EventPro transformed our product launch into an unforgettable experience. Their attention to detail and creative approach exceeded all expectations. Will definitely work with them again!"</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <img src="{% static 'images/bhavesh.jpg' %}" alt="Client Avatar" class="testimonial-avatar">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Michael Johnson</h5>
+                            <p class="text-muted mb-0">Marketing Director, Tech Innovations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"From the first consultation to the final farewell, EventPro made planning our wedding stress-free and enjoyable. They created a magical day that we'll cherish forever."</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <img src="{% static 'images/bhavesh.jpg' %}" alt="Client Avatar" class="testimonial-avatar">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Sarah & David Wilson</h5>
+                            <p class="text-muted mb-0">Wedding Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"Our annual conference has never run so smoothly. The team at EventPro handled everything with professionalism and grace, even when faced with last-minute changes. Highly recommended!"</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <img src="{% static 'images/bhavesh.jpg' %}" alt="Client Avatar" class="testimonial-avatar">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Jennifer Martinez</h5>
+                            <p class="text-muted mb-0">CEO, Global Solutions Inc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="#" class="btn btn-secondary btn-lg">Read More Reviews</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
